@@ -1,0 +1,32 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "university";
+
+// DB connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Get data from form
+$student_id = $_POST['student_id'];
+$course_code = $_POST['course_code'];
+$course_title = $_POST['course_title'];
+$semester = $_POST['semester'];
+
+if (empty($student_id) || empty($course_code)) {
+  die("Student ID and Course Code are mandatory.");
+}
+
+$sql = "INSERT INTO enrollments (student_id, course_code, course_title, semester)
+VALUES ('$student_id', '$course_code', '$course_title', '$semester')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Course enrollment successful!";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+$conn->close();
+?>
