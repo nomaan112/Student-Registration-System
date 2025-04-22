@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Course Enrollment</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #eef2f3;
+      padding: 30px;
+    }
+    .form-box {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Course Enrollment Form</h2>
+    <form id="enrollForm" action="enroll_course.php" method="POST" onsubmit="return validateForm()">
+      <label for="student_id">Student ID *</label>
+      <input type="text" id="student_id" name="student_id" required>
+
+      <label for="course_code">Course Code *</label>
+      <input type="text" id="course_code" name="course_code" required>
+
+      <label for="course_title">Course Title</label>
+      <input type="text" id="course_title" name="course_title">
+
+      <label for="semester">Semester</label>
+      <select name="semester" id="semester">
+        <option value="">Select Semester</option>
+        <option value="Spring">Spring</option>
+        <option value="Summer">Summer</option>
+        <option value="Fall">Fall</option>
+      </select>
+
+      <button type="submit">Enroll</button>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      const studentId = document.getElementById("student_id").value.trim();
+      const courseCode = document.getElementById("course_code").value.trim();
+      if (!studentId || !courseCode) {
+        alert("Student ID and Course Code are required.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
